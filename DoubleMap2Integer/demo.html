@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="DMap2Integer.js"charset="UTF-8"></script>
+<script type="text/javascript">
+	$(document).ready(function($) {
+		$("#button").on("click",function(){
+			var dv = $("#textv").val();
+			var ddd = new DMI(dv);
+			console.log(ddd.trans2DN(dv).toSource);
+		});
+	})
+</script>
+	<title></title>
+</head>
+<body>
+<input type="text" width="100px" id="textv"/>
+<input type="button" value="touch" id="button"/>
+</body>
+</html>
