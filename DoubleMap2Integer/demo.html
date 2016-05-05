@@ -8,7 +8,10 @@
 		$("#button").on("click",function(){
 			var dv = $("#textv").val();
 			var ddd = new DMI(dv);
-			console.log(ddd.trans2DN(dv).toSource);
+			//console.log(ddd.trans2DN(dv).toSource());
+			var  tt = ddd.trans2DN(dv);
+			var r = ddd.getNoFromMatrix(tt);
+			console.log(r);
 		});
 	})
 </script>

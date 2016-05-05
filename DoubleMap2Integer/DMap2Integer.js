@@ -32,23 +32,32 @@ DMI.prototype.isDouble=function(value){
 *	这种情况下该序号不能与值一一对应，应该舍弃该序号，或者跳过。这里我们选择跳过，则从max(m.n)的最小值来计算的话，当m+n-1>2时，每增加1，则按之前的序号计算，就应该减去m+n-1，
 *	实际上m+n-1可以看做该坐标所在对角线的横坐标等于1时的纵坐标
 *	所以2/3对应的整数应该是7
-*	1 3 5 9 13
-*	2 - 8 12
-*	4 7 -
-*	6 11
-*	10
+*	1  3  5  9  13 19 25
+*	2  -  8  12 18 24
+*	4  7  -  17 23 
+*	6  11 16 -
+*	10 15 22
+*	14 21
+*	20
 *	@parameter dn一个二元数
 */
 DMI.prototype.getNoFromMatrix = function(dn){
 	var result = 0;
 	//第几列开始
 	var start_y = dn.n+dn.m-1;
-	for(int i=0,len=start_y;i<len;i++){
+	for(var i=1,len=start_y;i<len;i++){
 		result += i;
 	}
+	result = result + dn.n;
 	if(start_y%2==1){
 		result = result - Math.floor(start_y/2);
+		if(dn.n<dn.m){
+			result ++;
+		}
+	}else{
+		result = result - Math.floor(start_y/2)+1;
 	}
+	return result;
 }
 /**
 *	将数字转换成一个坐标（n,m）
@@ -84,10 +93,10 @@ DMI.prototype.trans2DN = function(dv){
 	}
 	while(n%5 == 0){
 		n = (n*0.2).toFixed(0);
-		m = (m*0.5).toFixed(0);
+		m = (m*0.2).toFixed(0);
 	}
-	dn.n = n;
-	dn.m = m;
+	dn.n = n-0;
+	dn.m = m-0;
 	return dn;
 }
 /**
